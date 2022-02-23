@@ -8,6 +8,7 @@ import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage/Homepage";
+import DetailSpacePage from "./pages/DetailSpacePage/DetailSpacePage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route exact path="/homepage" element={<Home />} />
         <Route path="/" element={<Homepage />} />
+        <Route path="/spaces/:id" element={<DetailSpacePage />} />
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

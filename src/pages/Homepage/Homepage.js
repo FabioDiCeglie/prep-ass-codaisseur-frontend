@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import { getAllSpaces } from "../../store/Spaces/actions";
 import { useSelector } from "react-redux";
 import { selectSpaces } from "../../store/Spaces/selectors";
+import { Link } from "react-router-dom";
 export default function Homepage() {
   const spaces = useSelector(selectSpaces);
   const dispatch = useDispatch();
 
-  console.log("what is spaces", spaces);
+  //console.log("what is spaces", spaces);
   useEffect(() => {
     dispatch(getAllSpaces());
   }, []);
@@ -25,6 +26,9 @@ export default function Homepage() {
             >
               <h1>{space.title}</h1>
               <p>{space.description}</p>
+              <Link to={`/spaces/${space.id}`}>
+                <button>Go to details space</button>
+              </Link>
             </div>
           ))
         : "Loading"}
