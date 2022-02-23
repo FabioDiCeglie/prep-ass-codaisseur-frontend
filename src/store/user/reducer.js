@@ -42,6 +42,20 @@ export default (state = initialState, action) => {
         },
       };
     }
+    case "user/updateSpace": {
+      console.log("what is action", action.payload);
+      return {
+        ...state,
+        userSpace: {
+          ...state.userSpace,
+          title: action.payload.title,
+          description: action.payload.description,
+          backgroundColor: action.payload.backgroundColor,
+          color: action.payload.color,
+          stories: [...state.userSpace.stories],
+        },
+      };
+    }
     default:
       return state;
   }

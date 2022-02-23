@@ -161,3 +161,35 @@ export function createOneStory(name, content, imageUrl) {
     }
   };
 }
+
+export const updateSpace = (id) => ({
+  type: "user/updateSpace",
+  payload: id,
+});
+
+export function updateOneStory(id, title, description, backgroundColor, color) {
+  return async function thunk(dispatch, getState) {
+    console.log("what is info", id, title, description, backgroundColor, color);
+    // get token from the state
+    const token = selectToken(getState());
+
+    // if we have no token, stop
+    if (token === null) return;
+    const response = await axios.patch(
+      `http://localhost:4000/spaces/update/${id}`,
+      {
+        title,
+        description,
+        backgroundColor,
+        color,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    console.log("what is response", response.data);
+
+    dispatch(updateSpace(response.data));
+  };
+}

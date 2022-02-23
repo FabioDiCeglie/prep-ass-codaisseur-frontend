@@ -2,9 +2,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
 import { useDispatch } from "react-redux";
 import { deleteOneStory } from "../../store/user/actions";
-import PostCoolStoryForm, {
-  PoostCoolStoryForm,
-} from "../../components/PostCoolStoryForm";
+import PostCoolStoryForm from "../../components/PostCoolStoryForm";
+import EditForm from "../../components/EditForm";
 
 export default function MySpacePage() {
   const user = useSelector(selectUser);
@@ -47,6 +46,7 @@ export default function MySpacePage() {
               : "Loading"}
           </h3>
           <PostCoolStoryForm />
+          <EditForm />
         </div>
       </div>
     </div>
