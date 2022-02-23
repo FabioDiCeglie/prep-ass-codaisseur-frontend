@@ -27,7 +27,7 @@ export default function Homepage() {
               <h1>{space.title}</h1>
               <p>{space.description}</p>
               <Link to={`/spaces/${space.id}`}>
-                <button>Go to details space</button>
+                <button>Visit space</button>
               </Link>
             </div>
           ))

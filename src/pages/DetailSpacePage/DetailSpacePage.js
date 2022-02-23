@@ -25,7 +25,7 @@ export default function DetailSpacePage() {
           <h1>{space.title}</h1>
           <p>{space.description}</p>
           {space.stories
-            .sort((a, b) => a.createdAt - b.createdAt)
+            .sort((a, b) => b.createdAt - a.createdAt)
             .map((story) => (
               <div key={story.id}>
                 <h1>{story.name}</h1>
