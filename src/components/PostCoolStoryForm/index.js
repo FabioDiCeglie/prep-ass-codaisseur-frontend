@@ -11,6 +11,9 @@ export default function PostCoolStoryForm() {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(createOneStory(name, content, image));
+    setName("");
+    setContent("");
+    setImage("");
   }
   //console.log("form", form);
   //console.log("name", name);

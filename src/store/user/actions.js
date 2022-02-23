@@ -153,7 +153,7 @@ export function createOneStory(name, content, imageUrl) {
         }
       );
 
-      console.log("what is response", response.data);
+      //console.log("what is response", response.data);
 
       dispatch(createStory(response.data));
     } catch (error) {

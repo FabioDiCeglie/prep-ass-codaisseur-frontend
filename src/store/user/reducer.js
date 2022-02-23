@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
       };
     }
     case "user/createStory": {
-      console.log("what is ", action.payload);
+      //console.log("what is ", action.payload);
       const newStoriesArr = [...state.userSpace.stories, action.payload];
 
       return {
