@@ -6,6 +6,7 @@ const initialState = {
   email: null,
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
@@ -26,7 +27,19 @@ export default (state = initialState, action) => {
       );
       return {
         ...state,
-        stories: filterArrayStory,
+        userSpace: { ...state.userSpace, stories: filterArrayStory },
+      };
+    }
+    case "user/createStory": {
+      console.log("what is ", action.payload);
+      const newStoriesArr = [...state.userSpace.stories, action.payload];
+
+      return {
+        ...state,
+        userSpace: {
+          ...state.userSpace,
+          stories: newStoriesArr,
+        },
       };
     }
     default:

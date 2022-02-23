@@ -127,3 +127,37 @@ export function deleteOneStory(id) {
     dispatch(deleteStory(id));
   };
 }
+export const createStory = (data) => ({
+  type: "user/createStory",
+  payload: data,
+});
+
+export function createOneStory(name, content, imageUrl) {
+  return async function thunk(dispatch, getState) {
+    try {
+      console.log("what is name, content and image", name, content, imageUrl);
+      // get token from the state
+      const token = selectToken(getState());
+
+      // if we have no token, stop
+      if (token === null) return;
+      const response = await axios.post(
+        `http://localhost:4000/story/create`,
+        {
+          name,
+          content,
+          imageUrl,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log("what is response", response.data);
+
+      dispatch(createStory(response.data));
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+}
