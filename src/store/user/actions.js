@@ -61,6 +61,8 @@ export const login = (email, password) => {
         password,
       });
 
+      console.log("what is response", response);
+
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       dispatch(appDoneLoading());
@@ -93,6 +95,7 @@ export const getUserWithStoredToken = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
+      //console.log("what is response", response);
       // token is still valid
       dispatch(tokenStillValid(response.data));
       dispatch(appDoneLoading());

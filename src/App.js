@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage/Homepage";
 import DetailSpacePage from "./pages/DetailSpacePage/DetailSpacePage";
+import MySpacePage from "./pages/MySpacePage/MySpacePage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -46,6 +47,7 @@ function App() {
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/myspace" element={<MySpacePage />} />
       </Routes>
     </div>
   );
