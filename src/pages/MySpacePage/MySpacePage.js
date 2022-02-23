@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteOneStory } from "../../store/user/actions";
 
 export default function MySpacePage() {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
-  const [deleteStory, setDeleteStory] = useState(null);
-
-  console.log("what is user", user);
+  //console.log("what is user", user);
   return user && user.name && user.email ? (
     <div>
       <div>
@@ -36,10 +36,7 @@ export default function MySpacePage() {
                       alt={story.name}
                     />
                     <br />
-                    <button
-                      value={deleteStory}
-                      OnClick={() => setDeleteStory(story.id)}
-                    >
+                    <button onClick={() => dispatch(deleteOneStory(story.id))}>
                       Delete story
                     </button>
                   </div>

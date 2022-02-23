@@ -112,3 +112,18 @@ export const getUserWithStoredToken = () => {
     }
   };
 };
+
+export const deleteStory = (id) => ({
+  type: "user/deleteStory",
+  payload: id,
+});
+
+export function deleteOneStory(id) {
+  return async function thunk(dispatch, getState) {
+    const response = await axios.delete(`http://localhost:4000/story/${id}`);
+
+    console.log("what is response", response.data);
+
+    dispatch(deleteStory(id));
+  };
+}
