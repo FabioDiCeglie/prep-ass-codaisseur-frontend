@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createOneStory } from "../../store/user/actions";
+import { showMessageWithTimeout } from "../../store/appState/actions";
 export default function PostCoolStoryForm() {
   const [form, setForm] = useState(false);
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ export default function PostCoolStoryForm() {
     setName("");
     setContent("");
     setImage("");
+    dispatch(showMessageWithTimeout("success", false, "You create a story"));
   }
   //console.log("form", form);
   //console.log("name", name);
