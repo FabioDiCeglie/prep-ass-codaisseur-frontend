@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getOneSpace } from "../../store/Spaces/actions";
 import { useSelector } from "react-redux";
 import { selectSpace } from "../../store/Spaces/selectors";
+import { addLike } from "../../store/Spaces/actions";
 
 export default function DetailSpacePage() {
   const dispatch = useDispatch();
@@ -35,6 +36,10 @@ export default function DetailSpacePage() {
                   src={story.imageUrl}
                   alt={story.name}
                 />
+                <button onClick={() => dispatch(addLike(story.id))}>
+                  Likes
+                </button>
+                <h1 style={{ color: "blue" }}>{story.storyLikes.length}</h1>
               </div>
             ))}
         </div>

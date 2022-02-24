@@ -9,7 +9,7 @@ export default function MySpacePage() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  //console.log("what is user", user);
+  console.log("what is user", user);
   return user && user.name && user.email ? (
     <div>
       <div>
@@ -37,6 +37,7 @@ export default function MySpacePage() {
                       src={story.imageUrl}
                       alt={story.name}
                     />
+
                     <br />
                     <button onClick={() => dispatch(deleteOneStory(story.id))}>
                       Delete story

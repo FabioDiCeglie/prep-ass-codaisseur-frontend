@@ -19,6 +19,27 @@ export default function spacesReducer(state = initialState, action) {
         space: action.payload,
       };
     }
+    case "homepage/addOneLike":
+      console.log("what is action payload", action.payload);
+      const newState = { ...state };
+      const stories = newState.space.stories.map((story) => {
+        if (story.id === action.payload.idstory) {
+          const likes = [...story.storyLikes, action.payload];
+          return { ...story, storyLikes: likes };
+        }
+        return { ...story };
+      });
+      return {
+        ...state,
+        space: {
+          ...state.space,
+          stories: [...stories],
+          /*stories: [
+            ...state.space.stories,
+            { storyLikes: [...state.space.stories.storyLikes, action.payload] },
+          ]*/
+        },
+      };
     default: {
       return state;
     }
