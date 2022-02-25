@@ -5,13 +5,14 @@ import { updateOneStory } from "../../store/user/actions";
 import { selectUser } from "../../store/user/selectors";
 export default function EditForm() {
   const [form, setForm] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const [color, setColor] = useState("");
-  const dispatch = useDispatch();
-
   const user = useSelector(selectUser);
+  const [title, setTitle] = useState(user.userSpace.title);
+  const [description, setDescription] = useState(user.userSpace.description);
+  const [backgroundColor, setBackgroundColor] = useState(
+    user.userSpace.backgroundColor
+  );
+  const [color, setColor] = useState(user.userSpace.color);
+  const dispatch = useDispatch();
 
   //console.log("what is user", user);
 
@@ -37,7 +38,7 @@ export default function EditForm() {
               Title:{" "}
               <input
                 type="text"
-                placeholder={user.userSpace.title}
+                //placeholder={user.userSpace.title}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -48,7 +49,7 @@ export default function EditForm() {
               Description:{" "}
               <input
                 type="text"
-                placeholder={user.userSpace.description}
+                //placeholder={user.userSpace.description}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />

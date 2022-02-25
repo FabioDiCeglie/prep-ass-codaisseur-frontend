@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createOneStory } from "../../store/user/actions";
 import { showMessageWithTimeout } from "../../store/appState/actions";
+
 export default function PostCoolStoryForm() {
   const [form, setForm] = useState(false);
   const [name, setName] = useState("");
@@ -55,7 +56,7 @@ export default function PostCoolStoryForm() {
                 onChange={(e) => setImage(e.target.value)}
               />
             </label>
-            <img src={image} style={{ width: 200 }} />
+            <img src={image} style={{ width: 200 }} alt={name} />
           </p>
           <button type="submit"> Post a form</button>
         </form>

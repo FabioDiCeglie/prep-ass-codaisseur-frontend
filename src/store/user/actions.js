@@ -1,6 +1,7 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
-import { selectToken } from "./selectors";
+import { selectToken, selectUser } from "./selectors";
+
 import {
   appLoading,
   appDoneLoading,
@@ -138,11 +139,13 @@ export function createOneStory(name, content, imageUrl) {
       console.log("what is name, content and image", name, content, imageUrl);
       // get token from the state
       const token = selectToken(getState());
+      const user = selectUser(getState());
+      const spaceId = user.userSpace.id;
 
       // if we have no token, stop
       if (token === null) return;
       const response = await axios.post(
-        `http://localhost:4000/story/create`,
+        `http://localhost:4000/story/create/${spaceId}`,
         {
           name,
           content,
@@ -193,3 +196,28 @@ export function updateOneStory(id, title, description, backgroundColor, color) {
     dispatch(updateSpace(response.data));
   };
 }
+/*export const createComment = (id) => ({
+  type: "user/updateSpace",
+  payload: id,
+});
+
+export function createOneComment(comment) {
+  return async function thunk(dispatch, getState) {
+    console.log("what is comment", comment);
+    // get token from the state
+    const token = selectToken(getState());
+
+    // if we have no token, stop
+    if (token === null) return;
+    const response = await axios.post(
+      `http://localhost:4000/auth/create/comment`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    console.log("what is response", response.data);
+
+    dispatch();
+  };
+}*/

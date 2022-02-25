@@ -34,10 +34,6 @@ export default function spacesReducer(state = initialState, action) {
         space: {
           ...state.space,
           stories: [...stories],
-          /*stories: [
-            ...state.space.stories,
-            { storyLikes: [...state.space.stories.storyLikes, action.payload] },
-          ]*/
         },
       };
     default: {

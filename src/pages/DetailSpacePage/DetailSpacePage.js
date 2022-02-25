@@ -6,15 +6,23 @@ import { useSelector } from "react-redux";
 import { selectSpace } from "../../store/Spaces/selectors";
 import { addLike } from "../../store/Spaces/actions";
 
+import { fetchComments } from "../../store/Story/actions";
+import { selectStoryComments } from "../../store/Story/selectors";
+import Comments from "../../components/Comments";
+import { selectToken } from "../../store/user/selectors";
+
 export default function DetailSpacePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const space = useSelector(selectSpace);
+  const storiesAndComments = useSelector(selectStoryComments);
+  const token = useSelector(selectToken);
 
-  console.log("what is space", space);
+  //console.log("what is storiesAndComments", storiesAndComments);
   useEffect(() => {
     dispatch(getOneSpace(id));
+    dispatch(fetchComments(id));
   }, []);
   return (
     <div>
@@ -36,10 +44,31 @@ export default function DetailSpacePage() {
                   src={story.imageUrl}
                   alt={story.name}
                 />
-                <button onClick={() => dispatch(addLike(story.id))}>
-                  Likes
-                </button>
+                {token ? (
+                  <button onClick={() => dispatch(addLike(story.id))}>
+                    Likes
+                  </button>
+                ) : (
+                  ""
+                )}
                 <h1 style={{ color: "blue" }}>{story.storyLikes.length}</h1>
+                <Comments id={story.id} />
+                {storiesAndComments ? (
+                  <div>
+                    <p>
+                      {storiesAndComments
+                        .filter(
+                          (storyWithComments) =>
+                            storyWithComments.storyId === story.id
+                        )
+                        .map(({ comments }) =>
+                          comments.map((comment) => <p>{comment.comment}</p>)
+                        )}
+                    </p>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             ))}
         </div>
