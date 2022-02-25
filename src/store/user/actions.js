@@ -139,13 +139,11 @@ export function createOneStory(name, content, imageUrl) {
       console.log("what is name, content and image", name, content, imageUrl);
       // get token from the state
       const token = selectToken(getState());
-      const user = selectUser(getState());
-      const spaceId = user.userSpace.id;
 
       // if we have no token, stop
       if (token === null) return;
       const response = await axios.post(
-        `http://localhost:4000/story/create/${spaceId}`,
+        `http://localhost:4000/story/create`,
         {
           name,
           content,

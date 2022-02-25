@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createOneStory } from "../../store/user/actions";
 import { showMessageWithTimeout } from "../../store/appState/actions";
+import("./style.css");
 
 export default function PostCoolStoryForm() {
   const [form, setForm] = useState(false);
@@ -17,12 +18,17 @@ export default function PostCoolStoryForm() {
     setContent("");
     setImage("");
     dispatch(showMessageWithTimeout("success", false, "You create a story"));
+    setForm(false);
   }
   //console.log("form", form);
   //console.log("name", name);
   return (
     <div>
-      <button value={form} onClick={() => setForm(!form)}>
+      <button
+        className="ButtonsMySpace"
+        value={form}
+        onClick={() => setForm(!form)}
+      >
         Post a cool story bro
       </button>
       {form ? (
@@ -56,7 +62,7 @@ export default function PostCoolStoryForm() {
                 onChange={(e) => setImage(e.target.value)}
               />
             </label>
-            <img src={image} style={{ width: 200 }} alt={name} />
+            <img src={image} style={{ width: 200 }} />
           </p>
           <button type="submit"> Post a form</button>
         </form>

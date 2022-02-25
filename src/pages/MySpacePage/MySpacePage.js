@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteOneStory } from "../../store/user/actions";
 import PostCoolStoryForm from "../../components/PostCoolStoryForm";
 import EditForm from "../../components/EditForm";
+import("./style.css");
 
 export default function MySpacePage() {
   const user = useSelector(selectUser);
@@ -11,43 +12,50 @@ export default function MySpacePage() {
 
   console.log("what is user", user);
   return user && user.name && user.email ? (
-    <div>
+    <div className="MyspaceBlock">
       <div>
-        <h1>This is your space!</h1>
-        <h4>Name: {user.name}</h4>
-        <h4>Email: {user.email}</h4>
-        <h1>UserSpace</h1>
-        <div
-          style={{
-            backgroundColor: user.userSpace.backgroundColor,
-            color: user.userSpace.color,
-          }}
-        >
+        <div className="MyspaceInfoUser">
+          <h1 className="titleInfoUser">This is your space!</h1>
+          <h4>Name: {user.name}</h4>
+          <h4>Email: {user.email}</h4>
           <h4>{user.userSpace.title}</h4>
           <h4>{user.userSpace.description}</h4>
-          <h1>All your stories: </h1>
-          <h3>
+          <PostCoolStoryForm />
+          <EditForm />
+        </div>
+        <div>
+          <h1 style={{ textAlign: "center" }}>All your stories: </h1>
+        </div>
+        <div>
+          <div
+            style={{
+              backgroundColor: user.userSpace.backgroundColor,
+              color: user.userSpace.color,
+            }}
+            className="MyspaceStory"
+          >
             {user.userSpace.stories
               ? user.userSpace.stories.map((story) => (
-                  <div key={story.id}>
+                  <div className="Stories" key={story.id}>
                     <p>{story.name}</p>
                     <p>{story.content}</p>
                     <img
-                      style={{ maxWidth: 200 }}
+                      style={{ maxWidth: 200, maxHeight: 200 }}
                       src={story.imageUrl}
                       alt={story.name}
                     />
 
                     <br />
-                    <button onClick={() => dispatch(deleteOneStory(story.id))}>
+                    <button
+                      className="ButtonsMySpace"
+                      onClick={() => dispatch(deleteOneStory(story.id))}
+                    >
                       Delete story
                     </button>
                   </div>
                 ))
               : "Loading"}
-          </h3>
-          <PostCoolStoryForm />
-          <EditForm />
+          </div>
         </div>
       </div>
     </div>

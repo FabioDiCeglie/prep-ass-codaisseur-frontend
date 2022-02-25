@@ -1,0 +1,25 @@
+.MyspaceBlock {
+}
+
+.MyspaceInfoUser {
+  border: 0.5em solid black;
+}
+
+.titleInfoUser {
+  text-align: center;
+}
+
+.MyspaceStory {
+  background-color: aqua;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: "row";
+}
+
+.Stories {
+  margin-left: 4em;
+}
+
+.ButtonsMySpace {
+  border-radius: 0.5em;
+}

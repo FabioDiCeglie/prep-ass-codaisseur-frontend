@@ -21,7 +21,11 @@ export default function Comments(props) {
   }
   return (
     <div>
-      <button value={form} onClick={() => setForm(!form)}>
+      <button
+        className="ButtonsMySpace"
+        value={form}
+        onClick={() => setForm(!form)}
+      >
         Click here for add some comments!
       </button>
       {form ? (

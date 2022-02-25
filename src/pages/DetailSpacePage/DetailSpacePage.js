@@ -10,6 +10,7 @@ import { fetchComments } from "../../store/Story/actions";
 import { selectStoryComments } from "../../store/Story/selectors";
 import Comments from "../../components/Comments";
 import { selectToken } from "../../store/user/selectors";
+import("./styles.css");
 
 export default function DetailSpacePage() {
   const dispatch = useDispatch();
@@ -26,55 +27,62 @@ export default function DetailSpacePage() {
   }, []);
   return (
     <div>
-      <h1>Detail space:</h1>
-      {space ? (
-        <div
-          style={{ backgroundColor: space.backgroundColor, color: space.color }}
-        >
-          <h1>{space.title}</h1>
-          <p>{space.description}</p>
-          {space.stories
-            .sort((a, b) => b.createdAt - a.createdAt)
-            .map((story) => (
-              <div key={story.id}>
-                <h1>{story.name}</h1>
-                <p>{story.content}</p>
-                <img
-                  style={{ width: 300 }}
-                  src={story.imageUrl}
-                  alt={story.name}
-                />
-                {token ? (
-                  <button onClick={() => dispatch(addLike(story.id))}>
-                    Likes
-                  </button>
-                ) : (
-                  ""
-                )}
-                <h1 style={{ color: "blue" }}>{story.storyLikes.length}</h1>
-                <Comments id={story.id} />
-                {storiesAndComments ? (
-                  <div>
-                    <p>
-                      {storiesAndComments
-                        .filter(
-                          (storyWithComments) =>
-                            storyWithComments.storyId === story.id
-                        )
-                        .map(({ comments }) =>
-                          comments.map((comment) => <p>{comment.comment}</p>)
-                        )}
-                    </p>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-            ))}
-        </div>
-      ) : (
-        "loading"
-      )}
+      <div className="DetailSpace">
+        {space ? (
+          <div
+            style={{
+              backgroundColor: space.backgroundColor,
+              color: space.color,
+            }}
+          >
+            <h1>{space.title}</h1>
+            <p>{space.description}</p>
+            {space.stories
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .map((story) => (
+                <div key={story.id}>
+                  <h1>{story.name}</h1>
+                  <p>{story.content}</p>
+                  <img
+                    style={{ width: 300 }}
+                    src={story.imageUrl}
+                    alt={story.name}
+                  />
+                  {token ? (
+                    <button
+                      className="ButtonsMySpace"
+                      onClick={() => dispatch(addLike(story.id))}
+                    >
+                      Likes
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                  <h1 style={{ color: "blue" }}>{story.storyLikes.length}</h1>
+                  <Comments id={story.id} />
+                  {storiesAndComments ? (
+                    <div>
+                      <p>
+                        {storiesAndComments
+                          .filter(
+                            (storyWithComments) =>
+                              storyWithComments.storyId === story.id
+                          )
+                          .map(({ comments }) =>
+                            comments.map((comment) => <p>{comment.comment}</p>)
+                          )}
+                      </p>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ))}
+          </div>
+        ) : (
+          "loading"
+        )}
+      </div>
     </div>
   );
 }

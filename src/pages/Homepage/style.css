@@ -1,0 +1,8 @@
+.HomepageBlock {
+  display: flex;
+  justify-content: center;
+}
+
+.Title-Homepage {
+  font-size: 10em;
+}
